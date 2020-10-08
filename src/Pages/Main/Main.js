@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MainSliders from "./MainSliders";
 import MdClasses from "./MdClasses";
 import MainClasses from "./MainClasses";
+import LoginPractice from "./LoginPractice";
 
 const Main = () => {
   return (
@@ -11,6 +12,7 @@ const Main = () => {
         <MainSliders />
         <MdClasses />
         <MainClasses />
+        {/* <LoginPractice /> */}
       </Wrapper>
     </>
   );

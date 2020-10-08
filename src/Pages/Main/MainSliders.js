@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
 import MainSlider from "./MainSlider";
@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 const MainSliders = (props) => {
   const dispatch = useDispatch();
   const allMdClassData = useSelector((state) => state.allMdClasses);
+  const [bgColor, setbgColor] = useState(8);
 
   useEffect(() => {
     getAllMdClasses(dispatch);
@@ -32,13 +33,19 @@ const MainSliders = (props) => {
   return (
     <Container>
       <SliderWrapper>
-        <BackSlider />
+        <BackSlider bgColor={bgColor} />
         <FrontSlider>
-          <Slider {...settings}>
-            {items.map((item) => {
+          <Slider
+            {...settings}
+            beforeChange={(currentSlide) => {
+              setbgColor(currentSlide);
+            }}
+          >
+            {items.map((item, index) => {
               return (
                 <MainSlider
-                  key={item.id}
+                  length={items.length}
+                  id={index + 1}
                   thumbnail={item.thumbnail}
                   name={item.name}
                 />
@@ -62,9 +69,21 @@ const SliderWrapper = styled.section`
   position: relative;
 `;
 
+const bgColors = {
+  0: "#5CDB95",
+  1: "#41B3A3",
+  2: "#2F2FA2",
+  3: "#FC4445",
+  4: "#1A1A1D",
+  5: "#FF652F",
+  6: "#5680E9",
+  7: "#F4CC70",
+  8: "#EC96A4",
+};
+
 const BackSlider = styled.div`
   height: 400px;
-  background-color: blue;
+  background-color: ${(props) => bgColors[props.bgColor]};
 `;
 
 const FrontSlider = styled.div`

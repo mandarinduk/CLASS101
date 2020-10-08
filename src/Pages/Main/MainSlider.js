@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { Headline2, Body1, ProgressBar } from "@class101/ui";
 
 const Slider = (props) => {
-  const { key, thumbnail, name } = props;
+  const { length, id, thumbnail, name } = props;
 
   return (
-    <Wrapper key="id">
+    <Wrapper>
       <ImageContainer>
         <Image src={thumbnail} />
       </ImageContainer>
@@ -20,7 +20,9 @@ const Slider = (props) => {
           </ClassDesc>
         </ClassContainer>
         <ArrowContainer>
-          <SlideNumber>2 | 12</SlideNumber>
+          <SlideNumber>
+            {id} | {length}
+          </SlideNumber>
           <ProgressBar value={40} barColor="red" />
         </ArrowContainer>
       </ClassWrapper>
@@ -44,6 +46,7 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 `;
 
 const ClassWrapper = styled.div`
