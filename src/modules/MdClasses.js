@@ -22,12 +22,3 @@ export default function mdClasses(state = INITIAL_STATE, action) {
       return state;
   }
 }
-
-export const getAllMdClasses = (dispatch) => {
-  //   fetch(`http://10.58.4.19:8002/products/recommend`);
-  fetch(`http://localhost:3000/Data/mdClassesMOCK.json`)
-    .then((res) => res.json())
-    .then((res) => {
-      dispatch(getMdClasses(res.data));
-    });
-};

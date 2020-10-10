@@ -8,15 +8,13 @@ import Footer from "../../Components/Footer/Footer";
 
 const Main = () => {
   return (
-    <>
-      <Wrapper>
-        <Nav />
-        <MainSliders />
-        <MdClasses />
-        <MainClasses />
-        <Footer />
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Nav />
+      <MainSliders />
+      <MdClasses />
+      <MainClasses />
+      <Footer />
+    </Wrapper>
   );
 };
 

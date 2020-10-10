@@ -22,12 +22,3 @@ export default function mainClasses(state = INITIAL_STATE, action) {
       return state;
   }
 }
-
-export const getAllClasses = (dispatch) => {
-  // fetch(`http://10.58.4.19:8002/products`)
-  fetch(`http://localhost:3000/Data/classesMOCK.json`)
-    .then((res) => res.json())
-    .then((res) => {
-      dispatch(getClasses(res.data));
-    });
-};

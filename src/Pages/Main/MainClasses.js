@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllClasses } from "../../modules/MainClasses";
+import { getClasses } from "../../modules/MainClasses";
 import { Section, GridList } from "@class101/ui";
 import Card from "./Card";
 
@@ -10,7 +10,11 @@ const MainClasses = (props) => {
   const allClassData = useSelector((state) => state.allClasses);
 
   useEffect(() => {
-    getAllClasses(dispatch);
+    fetch(`http://localhost:3000/Data/classesMOCK.json`)
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch(getClasses(res.data));
+      });
   }, []);
 
   return (
@@ -21,40 +25,29 @@ const MainClasses = (props) => {
         to="/"
         linkText="전체 클래스 보기"
       >
-        <GridList
-          items={allClassData.classes}
-          smColumn={2}
-          lgColumn={4}
-          renderItem={(item) => {
-            const {
-              id,
-              thumbnail,
-              category,
-              name,
-              heart_count,
-              like,
-              retail_price,
-              discount_percent,
-              monthly_pay,
-              monthly_payment,
-            } = item;
-
-            return (
-              <Card
-                id={id}
-                thumbnail={thumbnail}
-                category={category}
-                name={name}
-                heart_count={heart_count}
-                like={like}
-                retail_price={retail_price.toLocaleString()}
-                discount_percent={discount_percent}
-                monthly_pay={monthly_pay.toLocaleString()}
-                monthly_payment={monthly_payment}
-              />
-            );
-          }}
-        />
+        {allClassData && (
+          <GridList
+            items={allClassData.classes}
+            smColumn={2}
+            lgColumn={4}
+            renderItem={(item) => {
+              return (
+                <Card
+                  id={item.id}
+                  thumbnail={item.thumbnail}
+                  category={item.category}
+                  name={item.name}
+                  heart_count={item.heart_count}
+                  like={item.like}
+                  retail_price={item.retail_price.toLocaleString()}
+                  discount_percent={item.discount_percent}
+                  monthly_pay={item.monthly_pay.toLocaleString()}
+                  monthly_payment={item.monthly_payment}
+                />
+              );
+            }}
+          />
+        )}
       </Section>
     </Wrapper>
   );

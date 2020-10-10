@@ -6,7 +6,6 @@ const Slider = ({ length, id, thumbnail, name, currentSlide }) => {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    console.log(currentSlide);
     setValue(0);
   }, [currentSlide]);
 

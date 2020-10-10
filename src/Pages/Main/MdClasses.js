@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllMdClasses } from "../../modules/MdClasses";
+import { getMdClasses } from "../../modules/MdClasses";
 import { Section, GridList } from "@class101/ui";
 import Card from "./Card";
 
@@ -10,7 +10,11 @@ const MdClasses = (props) => {
   const allMdClassData = useSelector((state) => state.allMdClasses);
 
   useEffect(() => {
-    getAllMdClasses(dispatch);
+    fetch(`http://localhost:3000/Data/mdClassesMOCK.json`)
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch(getMdClasses(res.data));
+      });
   }, []);
 
   return (
@@ -24,30 +28,18 @@ const MdClasses = (props) => {
           smColumn={2}
           lgColumn={4}
           renderItem={(item) => {
-            const {
-              id,
-              thumbnail,
-              category,
-              name,
-              heart_count,
-              like,
-              retail_price,
-              discount_percent,
-              monthly_pay,
-              monthly_payment,
-            } = item;
             return (
               <Card
-                id={id}
-                thumbnail={thumbnail}
-                category={category}
-                name={name}
-                heart_count={heart_count}
-                like={like}
-                retail_price={retail_price.toLocaleString()}
-                discount_percent={discount_percent}
-                monthly_pay={monthly_pay.toLocaleString()}
-                monthly_payment={monthly_payment}
+                id={item.id}
+                thumbnail={item.thumbnail}
+                category={item.category}
+                name={item.name}
+                heart_count={item.heart_count}
+                like={item.like}
+                retail_price={item.retail_price.toLocaleString()}
+                discount_percent={item.discount_percent}
+                monthly_pay={item.monthly_pay.toLocaleString()}
+                monthly_payment={item.monthly_payment}
               />
             );
           }}

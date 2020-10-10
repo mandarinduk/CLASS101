@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import MainSlider from "./MainSlider";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllMdClasses } from "../../modules/MdClasses";
+import { getMdClasses } from "../../modules/MdClasses";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -14,7 +14,11 @@ const MainSliders = (props) => {
   const [currentSlide, setCurrentSlide] = useState(8);
 
   useEffect(() => {
-    getAllMdClasses(dispatch);
+    fetch(`http://localhost:3000/Data/mdClassesMOCK.json`)
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch(getMdClasses(res.data));
+      });
   }, []);
 
   const items = allMdClassData.mdClasses;
