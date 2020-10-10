@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
 import MainSlider from "./MainSlider";
-
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMdClasses } from "../../modules/MdClasses";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -13,13 +11,13 @@ const MainSliders = (props) => {
   const dispatch = useDispatch();
   const allMdClassData = useSelector((state) => state.allMdClasses);
   const [bgColor, setbgColor] = useState(8);
+  const [currentSlide, setCurrentSlide] = useState(8);
 
   useEffect(() => {
     getAllMdClasses(dispatch);
   }, []);
 
   const items = allMdClassData.mdClasses;
-
   const settings = {
     arrows: true,
     infinite: true,
@@ -28,6 +26,7 @@ const MainSliders = (props) => {
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    draggable: false,
   };
 
   return (
@@ -39,6 +38,7 @@ const MainSliders = (props) => {
             {...settings}
             beforeChange={(currentSlide) => {
               setbgColor(currentSlide);
+              setCurrentSlide(currentSlide);
             }}
           >
             {items.map((item, index) => {
@@ -48,6 +48,8 @@ const MainSliders = (props) => {
                   id={index + 1}
                   thumbnail={item.thumbnail}
                   name={item.name}
+                  bgColor={bgColor}
+                  currentSlide={currentSlide}
                 />
               );
             })}

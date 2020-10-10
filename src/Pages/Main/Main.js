@@ -3,16 +3,18 @@ import styled from "styled-components";
 import MainSliders from "./MainSliders";
 import MdClasses from "./MdClasses";
 import MainClasses from "./MainClasses";
-import LoginPractice from "./LoginPractice";
+import Nav from "../../Components/Nav/Nav";
+import Footer from "../../Components/Footer/Footer";
 
 const Main = () => {
   return (
     <>
       <Wrapper>
+        <Nav />
         <MainSliders />
         <MdClasses />
         <MainClasses />
-        {/* <LoginPractice /> */}
+        <Footer />
       </Wrapper>
     </>
   );

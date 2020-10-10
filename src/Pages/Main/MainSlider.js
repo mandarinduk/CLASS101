@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Headline2, Body1, ProgressBar } from "@class101/ui";
+import { Headline2, Body1 } from "@class101/ui";
 
-const Slider = (props) => {
-  const { length, id, thumbnail, name } = props;
+const Slider = ({ length, id, thumbnail, name, currentSlide }) => {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    console.log(currentSlide);
+    setValue(0);
+  }, [currentSlide]);
+
+  useEffect(() => {
+    setValue(100);
+  }, [value]);
 
   return (
     <Wrapper>
@@ -23,7 +32,7 @@ const Slider = (props) => {
           <SlideNumber>
             {id} | {length}
           </SlideNumber>
-          <ProgressBar value={40} barColor="red" />
+          <Bar value={value} />
         </ArrowContainer>
       </ClassWrapper>
     </Wrapper>
@@ -31,6 +40,24 @@ const Slider = (props) => {
 };
 
 export default Slider;
+
+const Bar = styled.div`
+  width: 400px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  position: relative;
+
+  &::after {
+    position: absolute;
+    background: white;
+    width: ${({ value }) => value + "%"};
+    height: 100%;
+    content: "";
+    display: block;
+    transform-origin: left;
+    transition: ${({ value }) => (value === 100 ? "all 5s linear" : "none")};
+  }
+`;
 
 const Wrapper = styled.section`
   display: flex;
