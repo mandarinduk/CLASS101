@@ -1,0 +1,40 @@
+{
+  "List": [
+    {
+      "id": 1,
+      "src": "https://images.velog.io/images/olie1014/post/8fd105fc-fbcb-4ff0-9091-302249317ede/KakaoTalk_Photo_2020-10-08-13-09-17.jpeg",
+      "alt": "Nevada",
+      "title": "WELCOME 김우석의 미국여행 클래스에 오신것을 환영합니다!",
+      "first": "1. 안녕하세요, 반갑습니다!",
+      "second": "2. 미국문화에 대해 알아보기",
+      "third": "3. 미국예절에 대해 알아보기"
+    },
+    {
+      "id": 2,
+      "src": "https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+      "alt": "New York",
+      "title": "New York",
+      "first": "1. 맨해튼의 명소들 알아보기",
+      "second": "2. 맨해튼의 맛집들 알아보기",
+      "third": "3. 센트럴파크에 대해 알아보기"
+    },
+    {
+      "id": 3,
+      "src": "https://images.unsplash.com/photo-1483406354872-3e1be6d48c20?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80",
+      "alt": "Las Vegas",
+      "title": "Las Vegas",
+      "first": "1. 다양한 겜블링 체험 해보는 방법 알아보기.",
+      "second": "2. 라스베가스에 볼수있는 쇼들 알아보기.",
+      "third": "3. 뷔페 및 다양한 유명 쉐프들의 레스토랑에 대해 알아보기."
+    },
+    {
+      "id": 4,
+      "src": "https://images.velog.io/images/olie1014/post/e149781a-3956-42ff-bb5a-6ae9eb036a05/KakaoTalk_Photo_2020-10-08-13-08-33.jpeg",
+      "alt": "Pennsylvania",
+      "title": "Pennsylvania",
+      "first": "1. 필라델피아에 대해 알아보기.",
+      "second": "2. 피츠버그에 대해 알아보기.",
+      "third": "3. 허쉬에 대해 알아보기."
+    }
+  ]
+}
