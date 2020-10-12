@@ -1,8 +1,9 @@
-import React from "react";
-import { Icon } from "@class101/ui";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
 const BasicInfo = () => {
+  const [input, setInput] = useState("");
+
   return (
     <ContentContainer>
       <ContentWrapper>
@@ -33,7 +34,11 @@ const BasicInfo = () => {
               </BrandContainer>
               <CategoryContainer>
                 <label>카테고리</label>
-                <input placeholder="예시) 부업,창업,재테크,미술,음악,자기계발 "></input>
+                <input
+                  onChange={(e) => setInput(e.target.value)}
+                  value={input}
+                  placeholder="예시) 부업,창업,재테크,미술,음악,자기계발 "
+                ></input>
               </CategoryContainer>
               <DetailedCategoryContainer>
                 <label>세부 카테고리</label>
@@ -48,24 +53,18 @@ const BasicInfo = () => {
               <LevelContainer>
                 <label>난이도</label>
                 <select>
-                  <option>
-                    머니(부업,창업,재테크 등 수익 활동에 대한 클래스를 만들고
-                    싶어요
-                  </option>
-                  <option>
-                    커리어(직무,창업,자기계발 등 커리어 향상을 위한 클래스를
-                    만들고 싶어요)
-                  </option>
-                  <option>
-                    크리에이티브(미술,음악,요리 등 취미 클래스를 만들고 싶어요)
-                  </option>
+                  <option>전문가</option>
+                  <option>준전문가</option>
+                  <option>중급자</option>
+                  <option>초급자</option>
+                  <option>입문자</option>
                 </select>
               </LevelContainer>
             </form>
           </FormContainer>
         </BasicInfoContainer>
       </ContentWrapper>
-      <DisplayContainer></DisplayContainer>
+      <DisplayContainer>{input}</DisplayContainer>
     </ContentContainer>
   );
 };
@@ -80,6 +79,9 @@ const DisplayContainer = styled.div`
   width: 360px;
   height: 560px;
   margin-top: -172px;
+  background: black;
+  color: white;
+  ${({ theme }) => theme.flex("center", "center")}
 `;
 
 const ContentWrapper = styled.div`
