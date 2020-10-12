@@ -1,0 +1,100 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "thumbnail": "https://images.velog.io/images/kimsj5259/post/fe14a40f-70be-4938-a6b6-b4b8ae6668c9/Image%20from%20iOS%20(1).jpg",
+      "category": "\uc5ec\ud589",
+      "name": "[\uc720\ud559\ub85c\uadf8] \uae40\uc6b0\uc11d\uc758 \ub108\ud76c\uac00 \ubbf8\uad6d\uc744 \uc544\ub290\ub0d0?",
+      "heart_count": 9999,
+      "like": 100,
+      "retail_price": 900000,
+      "discount_percent": 70,
+      "monthly_pay": 22500,
+      "monthly_payment": 12
+    },
+    {
+      "id": 2,
+      "thumbnail": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      "category": "\uc5ec\ud589",
+      "name": "\uc218\ud604\uc774\uc640 \ud568\uaed8\ud558\ub294 \ubb34\uc54c\ucf5c \uc5ec\ud589",
+      "heart_count": 7644,
+      "like": 96,
+      "retail_price": 300000,
+      "discount_percent": 30,
+      "monthly_pay": 21000,
+      "monthly_payment": 10
+    },
+    {
+      "id": 9,
+      "thumbnail": "https://images.unsplash.com/photo-1503424886307-b090341d25d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      "category": "\uc5ec\ud589",
+      "name": "Valley \ub9ac\uc870\ud2b8\uc5d0\uc11c \ub9ac\uc870\ub610",
+      "heart_count": 553,
+      "like": 97,
+      "retail_price": 450000,
+      "discount_percent": 35,
+      "monthly_pay": 58500,
+      "monthly_payment": 5
+    },
+    {
+      "id": 10,
+      "thumbnail": "https://images.unsplash.com/photo-1580553466870-44c0b39cd72d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      "category": "\uc5ec\ud589",
+      "name": "\ub2c8\uaf34\ub77c\uc2a4\uc640 \ub5a0\ub098\ub294 \uacbd\uc8fc \ubb38\ud654\uc7ac \uc5ec\ud589",
+      "heart_count": 987,
+      "like": 93,
+      "retail_price": 279000,
+      "discount_percent": 20,
+      "monthly_pay": 44640,
+      "monthly_payment": 5
+    },
+    {
+      "id": 15,
+      "thumbnail": "https://images.unsplash.com/photo-1522735856-4f1dc00fb0f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      "category": "\uc5ec\ud589",
+      "name": "\uc608\ucc2c\uc774\uc758 \uac00\uc9dc\uc0ac\ub098\uc774 \uc9c1\uc811\uccb4\ud5d8. 3\ubc15 4\uc77c \ud3c9\uc591 \uce68\ud22c",
+      "heart_count": 5521,
+      "like": 99,
+      "retail_price": 425000,
+      "discount_percent": 45,
+      "monthly_pay": 46750,
+      "monthly_payment": 5
+    },
+    {
+      "id": 18,
+      "thumbnail": "https://images.unsplash.com/photo-1533204515132-035bc8d4128c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      "category": "\uc5ec\ud589",
+      "name": "\uc190\ud765\ubbfc\uacfc \ud568\uaed8\ud558\ub294 \ub7f0\ub358\ud22c\uc5b4",
+      "heart_count": 1001,
+      "like": 95,
+      "retail_price": 890700,
+      "discount_percent": 50,
+      "monthly_pay": 89070,
+      "monthly_payment": 5
+    },
+    {
+      "id": 27,
+      "thumbnail": "https://images.unsplash.com/photo-1528615141309-53f2564d3be8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      "category": "\uc5ec\ud589",
+      "name": "\uc640\uc778\ud611\ud68c\uc5d0\uc11c \uc8fc\uad00\ud558\ub294 \ubaa8\ud788\ub610\uc5d0\uc11c \uc18c\uc8fc\ud55c\uc794",
+      "heart_count": 5259,
+      "like": 94,
+      "retail_price": 643800,
+      "discount_percent": 55,
+      "monthly_pay": 144855,
+      "monthly_payment": 2
+    },
+    {
+      "id": 28,
+      "thumbnail": "https://images.unsplash.com/photo-1560703650-ef3e0f254ae0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+      "category": "\uc5ec\ud589",
+      "name": "\ubcd1\uc9c4\uc774\uc758 \uc720\ub808\uce74 \uc5b4\uc6d0\uc744 \ucc3e\uc544\uc11c. \uadf8\ub9ac\uc2a4 \uc5ec\ud589.",
+      "heart_count": 1213,
+      "like": 98,
+      "retail_price": 764300,
+      "discount_percent": 80,
+      "monthly_pay": 30572,
+      "monthly_payment": 5
+    }
+  ]
+}
