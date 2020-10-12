@@ -1,0 +1,37 @@
+{
+  "data": {
+    "id": 42,
+    "category": "부업",
+    "thumbnail": "https://soohyunlee.s3.ap-northeast-2.amazonaws.com/static/dog.jpg",
+    "name": "Hello world",
+    "retail_price": 55.0,
+    "discount_percent": 55.0,
+    "monthly_pay": 55.0,
+    "brand": 3,
+    "detail_category": "주식투자",
+    "level": "전문가",
+    "cover_image": "https://soohyunlee.s3.ap-northeast-2.amazonaws.com/static/bird.jpeg",
+    "introduction_image": [],
+    "introduction_text": [],
+    "status": ["제목 및 커버", "소개", "기본 정보"],
+    "profile_image": "https://1nass.s3.amazonaws.com/photo.jpg",
+    "nickname": "테스트중",
+    "phone_number": "0101112222",
+    "creator_introduction": "테스트소개입니다.",
+    "hashtag": ["1", "2", "3"],
+    "SNS": [
+      {
+        "snsid": 1,
+        "sns": "Instagram",
+        "account": "일나쓰",
+        "address": "ilnass@insta.com"
+      },
+      {
+        "snsid": 2,
+        "sns": "Youtube",
+        "account": "클나쓰",
+        "address": "class@face.com"
+      }
+    ]
+  }
+}

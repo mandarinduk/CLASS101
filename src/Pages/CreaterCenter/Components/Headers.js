@@ -10,20 +10,26 @@ function Headers({ saved }) {
         <HeadersLeftContent>
           <Logo />
           <div>수요조사 시작하기</div>
-          <Progress>{saved.length * 25}% 완료</Progress>
+          <Progress>{saved?.length * 25}% 완료</Progress>
         </HeadersLeftContent>
         <Link to="/">
           <Button>나가기</Button>
         </Link>
       </HeadersContent>
-      <ProgressBar value={saved.length * 25} />
+      <ProgressBar value={saved?.length * 25} />
     </HeadersWrapper>
   );
 }
 
 export default Headers;
 
-const HeadersWrapper = styled.div``;
+const HeadersWrapper = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 76px;
+  background-color: white;
+  z-index: 99;
+`;
 
 const HeadersContent = styled.div`
   ${({ theme }) => theme.flex(`space-between`, `center`)};
@@ -32,7 +38,9 @@ const HeadersContent = styled.div`
   left: 0px;
   padding: 16px 24px;
   width: 100%;
-  height: 76px;
+  height: 100%;
+
+  overflow: hidden;
 
   div {
     margin-right: 16px;

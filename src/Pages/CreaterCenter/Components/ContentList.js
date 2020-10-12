@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Colors, Icon } from "@class101/ui";
 import styled from "styled-components";
 
-function ContentList({ saved }) {
+function ContentList({ saved, CONTENTOBJ }) {
   const [contentObj, setContentObj] = useState(CONTENTOBJ);
 
   const isClicked = (title) => {
@@ -24,13 +24,13 @@ function ContentList({ saved }) {
           clicked={contentObj[content]}
         >
           <ContentNumber
-            isSaved={saved.includes(content)}
+            isSaved={saved?.includes(content)}
             clicked={contentObj[content]}
           >
             {i + 1}
           </ContentNumber>
           <Icon.CheckboxOn
-            fillColor={saved.includes(content) ? Colors.orange600 : ``}
+            fillColor={saved?.includes(content) ? Colors.orange600 : ``}
           />
           <span>{content}</span>
         </Button>
@@ -41,21 +41,16 @@ function ContentList({ saved }) {
 
 export default ContentList;
 
-const CONTENTOBJ = {
-  "기본 정보": true,
-  "제목 및 커버": false,
-  소개: false,
-  "크리에이터 소개": false,
-};
-
 const ContentListWrapper = styled.div`
   position: fixed;
+  top: 80px;
   left: 0px;
   width: 280px;
   padding-top: 24px;
   height: 100%;
   min-height: calc(100vh - 94px);
   border-right: 1px solid rgb(237, 239, 240);
+  overflow: hidden;
 
   svg {
     position: absolute;

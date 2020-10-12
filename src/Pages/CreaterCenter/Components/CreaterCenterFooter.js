@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-function CreaterCenterFooter() {
+function CreaterCenterFooter(props) {
   return (
     <CreaterCenterFooterWrapper>
       <Button>이전</Button>
       <div>
-        <Button disabled>저장하기</Button>
+        <Button onClick={props.onClick}>저장하기</Button>
         <Button orange>다음</Button>
       </div>
     </CreaterCenterFooterWrapper>
@@ -24,7 +24,7 @@ const CreaterCenterFooterWrapper = styled.div`
   width: calc(100% - 280px);
   height: 76px;
   border-top: 1px solid rgb(237, 239, 240);
-
+  background-color: white;
   div {
     ${({ theme }) => theme.flex(`center`, `center`)}
   }
