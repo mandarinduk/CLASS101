@@ -35,6 +35,7 @@ const CreaterCenterFooterWrapper = styled.div`
     text-decoration: none;
   }
 
+  background-color: white;
   div {
     ${({ theme }) => theme.flex(`center`, `center`)}
   }
