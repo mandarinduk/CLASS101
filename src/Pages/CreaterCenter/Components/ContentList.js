@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Colors, Icon } from "@class101/ui";
 import styled from "styled-components";
 
@@ -6,34 +7,39 @@ function ContentList({ saved, CONTENTOBJ }) {
   const [contentObj, setContentObj] = useState(CONTENTOBJ);
 
   const isClicked = (title) => {
-    setContentObj({
-      "기본 정보": false,
-      "제목 및 커버": false,
-      소개: false,
-      "크리에이터 소개": false,
-      [title]: true,
+    setContentObj((prevContent) => {
+      const keys = Object.keys(prevContent);
+      const updatedContent = {};
+
+      keys.forEach((key) => {
+        updatedContent[key] = key === title ? true : false;
+      });
+
+      return updatedContent;
     });
   };
 
   return (
     <ContentListWrapper>
-      {Object.keys(contentObj).map((content, i) => (
-        <Button
-          key={i}
-          onClick={() => isClicked(content)}
-          clicked={contentObj[content]}
-        >
-          <ContentNumber
-            isSaved={saved?.includes(content)}
+      {Object.keys(contentObj)?.map((content, i) => (
+        <Link to={LINKOBJ[content]}>
+          <Button
+            key={i}
+            onClick={() => isClicked(content)}
             clicked={contentObj[content]}
           >
-            {i + 1}
-          </ContentNumber>
-          <Icon.CheckboxOn
-            fillColor={saved?.includes(content) ? Colors.orange600 : ``}
-          />
-          <span>{content}</span>
-        </Button>
+            <ContentNumber
+              isSaved={saved?.includes(content)}
+              clicked={contentObj[content]}
+            >
+              {i + 1}
+            </ContentNumber>
+            <Icon.CheckboxOn
+              fillColor={saved?.includes(content) ? Colors.orange600 : ``}
+            />
+            <span>{content}</span>
+          </Button>
+        </Link>
       ))}
     </ContentListWrapper>
   );
@@ -41,9 +47,16 @@ function ContentList({ saved, CONTENTOBJ }) {
 
 export default ContentList;
 
+const LINKOBJ = {
+  "기본 정보": "/basicinfo",
+  "제목 및 커버": "/creatorssubject",
+  소개: "/creatorsintroduction",
+  "크리에이터 소개": "/creatorsinfo",
+};
+
 const ContentListWrapper = styled.div`
   position: fixed;
-  top: 80px;
+  top: 100px;
   left: 0px;
   width: 280px;
   padding-top: 24px;
@@ -51,6 +64,10 @@ const ContentListWrapper = styled.div`
   min-height: calc(100vh - 94px);
   border-right: 1px solid rgb(237, 239, 240);
   overflow: hidden;
+
+  a {
+    text-decoration: none;
+  }
 
   svg {
     position: absolute;

@@ -1,13 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function CreaterCenterFooter({ handleUpload }) {
+function CreaterCenterFooter({ handleUpload, prevPage, nextPage }) {
   return (
     <CreaterCenterFooterWrapper>
-      <Button>이전</Button>
+      <Link to={prevPage}>
+        <Button>이전</Button>
+      </Link>
       <div>
         <Button onClick={handleUpload}>저장하기</Button>
-        <Button orange>다음</Button>
+        <Link to={nextPage}>
+          <Button orange>다음</Button>
+        </Link>
       </div>
     </CreaterCenterFooterWrapper>
   );
@@ -24,7 +29,11 @@ const CreaterCenterFooterWrapper = styled.div`
   width: calc(100% - 280px);
   height: 76px;
   border-top: 1px solid rgb(237, 239, 240);
-  background-color: white;
+
+  a {
+    text-decoration: none;
+  }
+
   div {
     ${({ theme }) => theme.flex(`center`, `center`)}
   }

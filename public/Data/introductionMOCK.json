@@ -1,0 +1,39 @@
+{
+  "data": {
+    "id": 42,
+    "category": "산5",
+    "thumbnail": "https://soohyunlee.s3.ap-northeast-2.amazonaws.com/static/힝입니다.png",
+    "name": "이것은테스트",
+    "retail_price": 55.0,
+    "discount_percent": 55.0,
+    "monthly_pay": 55.0,
+    "brand": "커리어(직무, 창업, 자기계발 등 커리어 향상을 위한 클래스를 만들고 싶어요)",
+    "detail_category": "드2",
+    "level": "중급자",
+    "cover_image": "https://soohyunlee.s3.ap-northeast-2.amazonaws.com/static/개허탈.png",
+    "introduction_image": [
+      "https://soohyunlee.s3.ap-northeast-2.amazonaws.com/introduction1.png",
+      "https://soohyunlee.s3.ap-northeast-2.amazonaws.com/introduction22.png"
+    ],
+    "introduction_text": ["again", "again2"],
+    "status": ["기본 정보", "크리에이터 소개"],
+    "profile_image": "https://soohyunlee.s3.ap-northeast-2.amazonaws.com/static/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2020-10-14+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+7.43.08.png",
+    "nickname": "오리꽥꽥",
+    "phone_number": "0102222",
+    "creator_introduction": "테스트소개입니다.",
+    "SNS": [
+      {
+        "snsid": 1,
+        "sns": "Instagram",
+        "account": "일나쓰",
+        "address": "test@insta"
+      },
+      {
+        "snsid": 2,
+        "sns": "Youtube",
+        "account": "클나쓰",
+        "address": "test@facebook"
+      }
+    ]
+  }
+}

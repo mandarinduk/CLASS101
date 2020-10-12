@@ -33,9 +33,6 @@ const HeadersWrapper = styled.div`
 
 const HeadersContent = styled.div`
   ${({ theme }) => theme.flex(`space-between`, `center`)};
-  position: sticky;
-  top: 0px;
-  left: 0px;
   padding: 16px 24px;
   width: 100%;
   height: 100%;
