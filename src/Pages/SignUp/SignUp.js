@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import MainHeader from "../../Components/Nav/Components/MainHeader";
 import Footer from "../../Components/Footer/Footer";
-import api from "../../Config";
+import { api } from "../../Config";
 import InputAttrData from "./InputAttrData";
 import styled from "styled-components";
 

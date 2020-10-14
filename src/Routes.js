@@ -10,6 +10,7 @@ import CreaterCenter from "./Pages/CreaterCenter/CreatorCenter";
 import Nav from "./Components/Nav/Nav";
 import Footer from "./Components/Footer/Footer";
 import BasicInfo from "./Pages/CreaterCenter/BasicInfo";
+import CreatorsSubject from "./Pages/CreaterCenter/CreatorsSubject";
 
 class Routes extends React.Component {
   render() {
@@ -25,6 +26,7 @@ class Routes extends React.Component {
             <Route exact path="/nav" component={Nav} />
             <Route exact path="/footer" component={Footer} />
             <Route exact path="/basicinfo" component={BasicInfo} />
+            <Route exact path="/creatorssubject" component={CreatorsSubject} />
           </Switch>
         </Router>
       </ThemeProvider>

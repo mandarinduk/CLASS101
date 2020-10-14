@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import kakaoLogin_API from "../../Config";
+import { kakaoLogin_API } from "../../Config";
 import styled from "styled-components";
 
 function Login() {
