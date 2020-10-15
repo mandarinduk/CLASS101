@@ -32,10 +32,11 @@ function CreatorsSubject() {
   }, []);
 
   useEffect(() => {
-    setCoverImgURL(backData.cover_image);
-    setThumbnailImgURL(backData.thumbnail);
-    setSubject(backData.name);
-  }, [backData.cover_image, backData.name, backData.thumbnail]);
+    const { cover_image, thumbnail, name } = backData;
+    setCoverImgURL(cover_image);
+    setThumbnailImgURL(thumbnail);
+    setSubject(name);
+  }, [backData]);
 
   const uploadCoverImg = (e) => {
     uploadImg(e, setCoverImgBase64, setCoverImg);
@@ -230,7 +231,6 @@ function CreatorsSubject() {
           </ThumbnailContainer>
           <button onClick={sendData}>send</button>
         </MainSection>
-        <SideSection></SideSection>
       </Wrapper>
     </>
   );
@@ -460,11 +460,4 @@ const ThumbnailSub = styled.div`
   max-width: 598px;
   width: 100%;
   height: 300px;
-`;
-
-const SideSection = styled.section`
-  max-width: 360px;
-  width: 100%;
-  height: 1100px;
-  border: 1px solid green;
 `;
