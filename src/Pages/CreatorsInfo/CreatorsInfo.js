@@ -21,7 +21,7 @@ import ContentList from "../CreaterCenter/Components/ContentList";
 import CreaterCenterFooter from "../CreaterCenter/Components/CreaterCenterFooter";
 
 const CreatorsInfo = () => {
-  // 크리에이터 전체 데이터
+  // 크리에이터 전체 데이터 받아오기1
   const [creator, setCreator] = useState([]);
   // 크리에이터 데이터 불러온 후 배열에 선언하기
   useEffect(() => {

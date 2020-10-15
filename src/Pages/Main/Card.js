@@ -25,13 +25,14 @@ const Card = (props) => {
     discount_percent,
     monthly_pay,
     monthly_payment,
+    isMD,
   } = props;
 
   return (
-    <Wrapper>
-      <ImgContainer>
+    <Wrapper md={isMD}>
+      <ImgContainer md={isMD}>
         <img
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
           src={thumbnail}
           alt={name}
         />
@@ -88,6 +89,7 @@ const Card = (props) => {
 export default Card;
 
 const Wrapper = styled.div`
+  padding: ${({ md }) => (md ? "0 12px" : "0")};
   .likeInfo {
     margin-bottom: 12px;
     div {
@@ -97,7 +99,7 @@ const Wrapper = styled.div`
 `;
 
 const ImgContainer = styled.div`
-  height: 200px;
+  height: ${({ md }) => (md ? `400px` : `200px`)};
   overflow: hidden;
   border-radius: 5px;
   cursor: pointer;

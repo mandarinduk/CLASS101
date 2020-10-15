@@ -1,0 +1,27 @@
+{
+  "data": [
+    {
+      "id": 34,
+      "category": "산5",
+      "thumbnail": "https://iso.500px.com/wp-content/uploads/2014/06/W4A2827-1.jpg",
+      "name": "이것은테스트",
+      "brand": "커리어(직무, 창업, 자기계발 등 커리어 향상을 위한 클래스를 만들고 싶어요)",
+      "detail_category": "드2",
+      "level": "중급자",
+      "cover_image": "https://images.unsplash.com/photo-1591674642859-d31a75a3a013?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80",
+      "introduction_image": [
+        "https://soohyunlee.s3.ap-northeast-2.amazonaws.com/introduction1.png",
+        "https://soohyunlee.s3.ap-northeast-2.amazonaws.com/introduction22.png"
+      ],
+      "introduction_text": ["again", "again2"],
+      "profile_image": "test2",
+      "nickname": "123123",
+      "phone_number": "123123123",
+      "creator_introduction": "테스트 소개2",
+      "hashtag": ["기본 정보", "제목 및 커버", "소개"],
+      "sns": ["기본 정보", "제목 및 커버", "소개"],
+
+      "status": ["기본 정보", "제목 및 커버", "소개"]
+    }
+  ]
+}

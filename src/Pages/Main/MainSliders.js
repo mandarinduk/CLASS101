@@ -11,10 +11,10 @@ const MainSliders = (props) => {
   const dispatch = useDispatch();
   const allMdClassData = useSelector((state) => state.allMdClasses);
   const [bgColor, setbgColor] = useState(8);
-  const [currentSlide, setCurrentSlide] = useState(8);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/Data/mdClassesMOCK.json`)
+    fetch(`http://10.58.2.168:8002/products/recommend`)
       .then((res) => res.json())
       .then((res) => {
         dispatch(getMdClasses(res.data));
@@ -42,6 +42,9 @@ const MainSliders = (props) => {
             {...settings}
             beforeChange={(currentSlide) => {
               setbgColor(currentSlide);
+              setCurrentSlide(currentSlide);
+            }}
+            afterChange={(currentSlide) => {
               setCurrentSlide(currentSlide);
             }}
           >

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import MainSliders from "./MainSliders";
 import MdClasses from "./MdClasses";
 import MainClasses from "./MainClasses";
+import OpenClasses from "./OpenClasses";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
 
@@ -13,6 +14,7 @@ const Main = () => {
       <MainSliders />
       <MdClasses />
       <MainClasses />
+      <OpenClasses />
       <Footer />
     </Wrapper>
   );
