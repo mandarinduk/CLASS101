@@ -3,8 +3,9 @@ import UserInfo from "./UserInfo";
 import styled from "styled-components";
 
 const UserMenu = () => {
-  const navMenuArr = MENU[localStorage.getItem("token") ? "login" : "logout"];
-  const isToken = localStorage.getItem("token") ? true : false;
+  const navMenuArr =
+    MENU[localStorage.getItem("Kakao_token") ? "login" : "logout"];
+  const isToken = localStorage.getItem("Kakao_token") ? true : false;
 
   return (
     <UserMenuWrapper>

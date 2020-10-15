@@ -1,15 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CreatorsSubjectData from "./Data/CreatorsSubjectData";
 import axios from "axios";
 import { api } from "../../Config";
 import styled, { css } from "styled-components";
 
 function CreatorsSubject() {
+  const [backData, setBackData] = useState("");
+  const [coverImgURL, setCoverImgURL] = useState("");
+  const [thumbnailImgURL, setThumbnailImgURL] = useState("");
   const [coverImgBase64, setCoverImgBase64] = useState("");
   const [coverImg, setCoverImg] = useState(null);
   const [thumbnailImgBase64, setThumbnailImgBase64] = useState("");
   const [thumbnailImg, setThumbnailImg] = useState(null);
   const [subject, setSubject] = useState("");
+
+  // mockData 테스트용 코드
+  // useEffect(() => {
+  //   axios
+  //     .get(`/Data/CreatorsSubject/mockData.json`)
+  //     .then((res) => setBackData(res.data.data));
+  // }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${api}/products/title`, {
+        headers: {
+          Authorization: localStorage.getItem("Kakao_token"),
+        },
+      })
+      .then((res) => setBackData(res.data.data));
+  }, []);
+
+  useEffect(() => {
+    setCoverImgURL(backData.cover_image);
+    setThumbnailImgURL(backData.thumbnail);
+    setSubject(backData.name);
+  }, [backData.cover_image, backData.name, backData.thumbnail]);
 
   const uploadCoverImg = (e) => {
     uploadImg(e, setCoverImgBase64, setCoverImg);
@@ -17,6 +43,7 @@ function CreatorsSubject() {
 
   const removeCoverImg = (e) => {
     removeImg(e, setCoverImgBase64, setCoverImg);
+    setCoverImgURL("");
   };
 
   const uploadThumbnailImg = (e) => {
@@ -25,6 +52,7 @@ function CreatorsSubject() {
 
   const removeThumbnailImg = (e) => {
     removeImg(e, setThumbnailImgBase64, setThumbnailImg);
+    setThumbnailImgURL("");
   };
 
   const uploadImg = (e, setImgBase64, setImg) => {
@@ -58,17 +86,11 @@ function CreatorsSubject() {
     formData.append("thumbnail", thumbnailImg);
     formData.append("title", subject);
 
-    const {
-      data: { message },
-    } = await axios
-      .post(`${api}/products/title`, formData)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // console.log(message);
+    await axios.post(`${api}/products/title`, formData, {
+      headers: {
+        Authorization: localStorage.getItem("Kakao_token"),
+      },
+    });
   };
 
   return (
@@ -86,19 +108,25 @@ function CreatorsSubject() {
           <CoverContainer>
             <CoverMain>
               <ContentSubject>커버 이미지</ContentSubject>
-              <ImgContainer coverImg={coverImg}>
+              <ImgContainer coverImg={coverImg} coverImgURL={coverImgURL}>
                 <InputImg
                   type="file"
                   onChange={uploadCoverImg}
-                  disabled={coverImg}
+                  disabled={coverImg || coverImgURL}
                 />
-                <UploadedImgWrap coverImg={coverImg}>
-                  <UploadedImg alt="coverImg" src={coverImgBase64} />
+                <UploadedImgWrap coverImg={coverImg} coverImgURL={coverImgURL}>
+                  <UploadedImg
+                    alt="coverImg"
+                    src={coverImgURL ? coverImgURL : coverImgBase64}
+                  />
                   <DelBtn onClick={removeCoverImg}>
                     {CreatorsSubjectData.DelBtn}
                   </DelBtn>
                 </UploadedImgWrap>
-                <DefaultContentsWrap coverImg={coverImg}>
+                <DefaultContentsWrap
+                  coverImg={coverImg}
+                  coverImgURL={coverImgURL}
+                >
                   <ImgDefaultIcon
                     alt="imgDefault"
                     src="https://class101.net/images/add-photo-portrait.png"
@@ -114,6 +142,7 @@ function CreatorsSubject() {
                 placeholder="컨셉이 잘 드러나는 클래스의 제목을 지어주세요."
                 onChange={handleSubject}
                 name="subject"
+                value={subject || ""}
               />
               <ContentDescBox>
                 <DescTitle>어떤 사진과 제목이 좋을지 고민이신가요?</DescTitle>
@@ -140,16 +169,24 @@ function CreatorsSubject() {
           <ThumbnailContainer>
             <ThumbnailMain>
               <ContentSubject>썸네일 이미지</ContentSubject>
-              <ImgContainer thumbnail thumbnailImg={thumbnailImg}>
+              <ImgContainer
+                thumbnail
+                thumbnailImg={thumbnailImg}
+                thumbnailImgURL={thumbnailImgURL}
+              >
                 <InputImg
                   type="file"
                   onChange={uploadThumbnailImg}
-                  disabled={thumbnailImg}
+                  disabled={thumbnailImg || thumbnailImgURL}
                 />
-                <UploadedImgWrap thumbnailImg={thumbnailImg} thumbnail>
+                <UploadedImgWrap
+                  thumbnail
+                  thumbnailImg={thumbnailImg}
+                  thumbnailImgURL={thumbnailImgURL}
+                >
                   <UploadedImg
                     alt="thumbnailImg"
-                    src={thumbnailImgBase64}
+                    src={thumbnailImgURL ? thumbnailImgURL : thumbnailImgBase64}
                     thumbnail
                     thumbnailImg={thumbnailImg}
                   />
@@ -157,7 +194,10 @@ function CreatorsSubject() {
                     {CreatorsSubjectData.DelBtn}
                   </DelBtn>
                 </UploadedImgWrap>
-                <DefaultContentsWrap thumbnailImg={thumbnailImg}>
+                <DefaultContentsWrap
+                  thumbnailImg={thumbnailImg}
+                  thumbnailImgURL={thumbnailImgURL}
+                >
                   <ImgDefaultIcon
                     alt="imgDefault"
                     src="https://class101.net/images/add-photo-portrait.png"
@@ -262,8 +302,10 @@ const ImgContainer = styled.label`
   height: ${({ thumbnail }) => (thumbnail ? "231px" : "400px")};
   border: 1px solid #cdd1d4;
   border-radius: 3px;
-  cursor: ${({ coverImg, thumbnailImg }) =>
-    coverImg || thumbnailImg ? `default` : `pointer`};
+  cursor: ${({ coverImg, coverImgURL, thumbnailImg, thumbnailImgURL }) =>
+    coverImg || coverImgURL || thumbnailImg || thumbnailImgURL
+      ? `default`
+      : `pointer`};
 `;
 
 const InputImg = styled.input`
@@ -271,8 +313,10 @@ const InputImg = styled.input`
 `;
 
 const UploadedImgWrap = styled.div`
-  display: ${({ coverImg, thumbnailImg }) =>
-    coverImg || thumbnailImg ? `block` : `none`};
+  display: ${({ coverImg, coverImgURL, thumbnailImg, thumbnailImgURL }) =>
+    coverImg || coverImgURL || thumbnailImg || thumbnailImgURL
+      ? `block`
+      : `none`};
   position: relative;
   max-width: 300px;
   width: 100%;
@@ -295,8 +339,10 @@ const DelBtn = styled.div`
 `;
 
 const DefaultContentsWrap = styled.div`
-  display: ${({ coverImg, thumbnailImg }) =>
-    coverImg || thumbnailImg ? `none` : `flex`};
+  display: ${({ coverImg, coverImgURL, thumbnailImg, thumbnailImgURL }) =>
+    coverImg || coverImgURL || thumbnailImg || thumbnailImgURL
+      ? `none`
+      : `flex`};
   flex-direction: column;
   justify-content: center;
   align-items: center;
