@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-function CreaterCenterFooter(props) {
+function CreaterCenterFooter({ handleUpload }) {
   return (
     <CreaterCenterFooterWrapper>
       <Button>이전</Button>
       <div>
-        <Button onClick={props.onClick}>저장하기</Button>
+        <Button onClick={handleUpload}>저장하기</Button>
         <Button orange>다음</Button>
       </div>
     </CreaterCenterFooterWrapper>

@@ -1,12 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import Headers from "./Components/Headers";
+import ContentList from "./Components/ContentList";
+import CreaterCenterFooter from "./Components/CreaterCenterFooter";
 
 const BasicInfo = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState({
+    categoryValue: "",
+    detailValue: "",
+  });
+
+  const [select, setSelect] = useState({
+    brandValue: "",
+    levelValue: "",
+  });
+
+  const [data, setData] = useState("");
+
+  const { categoryValue, detailValue } = input;
+  const { brandValue, levelValue } = select;
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  };
+
+  const handleSelect = (e) => {
+    const { name, value } = e.target;
+    setSelect({
+      ...select,
+      [name]: value,
+    });
+  };
+
+  useEffect(() => {
+    fetch("http://10.58.2.168:8002/products/basic", {
+      headers: {
+        Authorization: localStorage.getItem("Kakao_token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data);
+        setInput({
+          categoryValue: res.data.category,
+          detailValue: res.data.detail_category,
+        });
+        setSelect({
+          brandValue: res.data.brand,
+          levelValue: res.data.level,
+        });
+      });
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("http://10.58.2.168:8002/products/basic", {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("Kakao_token"),
+      },
+      body: JSON.stringify({
+        brand: brandValue,
+        category: categoryValue,
+        detail_category: detailValue,
+        level: levelValue,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+      });
+  };
 
   return (
     <ContentContainer>
       <ContentWrapper>
+        <Headers saved={data?.status} />
+        <ContentList saved={data?.status} CONTENTOBJ={CONTENTOBJ} />
         <BasicInfoContainer>
           <h3>간단하게 어떤 클래스인지 알려주세요</h3>
           <p>
@@ -15,28 +89,33 @@ const BasicInfo = () => {
             즉시 저장되니 안심해 주세요.
           </p>
           <FormContainer>
-            <form>
+            <form onSubmit={handleSubmit}>
               <BrandContainer>
                 <label>브랜드</label>
-                <select>
-                  <option>
-                    머니(부업,창업,재테크 등 수익 활동에 대한 클래스를 만들고
-                    싶어요
+                <select
+                  onChange={handleSelect}
+                  name="brandValue"
+                  value={brandValue}
+                >
+                  <option value="1">
+                    크리에이티브(미술,음악,요리 등 취미 클래스를 만들고 싶어요)
                   </option>
-                  <option>
+                  <option value="2">
                     커리어(직무,창업,자기계발 등 커리어 향상을 위한 클래스를
                     만들고 싶어요)
                   </option>
-                  <option>
-                    크리에이티브(미술,음악,요리 등 취미 클래스를 만들고 싶어요)
+                  <option value="3">
+                    머니(부업,창업,재테크 등 수익 활동에 대한 클래스를 만들고
+                    싶어요
                   </option>
                 </select>
               </BrandContainer>
               <CategoryContainer>
                 <label>카테고리</label>
                 <input
-                  onChange={(e) => setInput(e.target.value)}
-                  value={input}
+                  onChange={handleInput}
+                  value={categoryValue}
+                  name="categoryValue"
                   placeholder="예시) 부업,창업,재테크,미술,음악,자기계발 "
                 ></input>
               </CategoryContainer>
@@ -48,23 +127,32 @@ const BasicInfo = () => {
                   식으로요. 더 자세한 내용을 보고 싶다면, 기본 정보 작성 가이드
                   를 확인해 주세요.
                 </div>
-                <input placeholder="예시) 가죽공예, 어반 스케치, 딥펜 캘리그라피, 다이어리 꾸미기, 가계부 작성, 색연필 인물화, 네이버 스토어 운영"></input>
+                <input
+                  onChange={handleInput}
+                  value={detailValue}
+                  name="detailValue"
+                  placeholder="예시) 가죽공예, 어반 스케치, 딥펜 캘리그라피, 다이어리 꾸미기, 가계부 작성, 색연필 인물화, 네이버 스토어 운영"
+                ></input>
               </DetailedCategoryContainer>
               <LevelContainer>
                 <label>난이도</label>
-                <select>
-                  <option>전문가</option>
-                  <option>준전문가</option>
-                  <option>중급자</option>
-                  <option>초급자</option>
-                  <option>입문자</option>
+                <select
+                  onChange={handleSelect}
+                  name="levelValue"
+                  value={levelValue}
+                >
+                  <option value="1">입문자</option>
+                  <option value="2">초급자</option>
+                  <option value="3">중급자</option>
+                  <option value="4">준전문가</option>
+                  <option value="5">전문가</option>
                 </select>
               </LevelContainer>
             </form>
           </FormContainer>
         </BasicInfoContainer>
       </ContentWrapper>
-      <DisplayContainer>{input}</DisplayContainer>
+      <CreaterCenterFooter handleUpload={handleSubmit} />
     </ContentContainer>
   );
 };
@@ -72,26 +160,16 @@ const BasicInfo = () => {
 export default BasicInfo;
 const ContentContainer = styled.div`
   ${({ theme }) => theme.flex("center", "center")}
-  margin-top: 20px;
-`;
-
-const DisplayContainer = styled.div`
-  width: 360px;
-  height: 560px;
-  margin-top: -172px;
-  background: black;
-  color: white;
-  ${({ theme }) => theme.flex("center", "center")}
 `;
 
 const ContentWrapper = styled.div`
   ${({ theme }) => theme.flex("center", "")}
-  width: 753px;
+  width: 953px;
   height: 731px;
 `;
 
 const BasicInfoContainer = styled.div`
-  padding: 32px 32px 60px;
+  margin: 120px 80px 60px;
   h3 {
     ${({ theme }) => theme.font("24px", "bold")}
     margin-bottom: 16px;
@@ -204,3 +282,10 @@ const LevelContainer = styled.div`
     ${Select}
   }
 `;
+
+const CONTENTOBJ = {
+  "기본 정보": true,
+  "제목 및 커버": false,
+  소개: false,
+  "크리에이터 소개": false,
+};
