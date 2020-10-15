@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Headers from "./Components/Headers";
+import ContentList from "./Components/ContentList";
+import CreaterCenterFooter from "./Components/CreaterCenterFooter";
 import CreatorsSubjectData from "./Data/CreatorsSubjectData";
 import axios from "axios";
 import { api } from "../../Config";
@@ -96,6 +99,8 @@ function CreatorsSubject() {
 
   return (
     <>
+      <Headers saved={backData?.status} />
+      <ContentList saved={backData?.status} CONTENTOBJ={CONTENTOBJ} />
       <Wrapper>
         <MainSection>
           <Title>
@@ -229,9 +234,9 @@ function CreatorsSubject() {
               </ContentDescBox>
             </ThumbnailSub>
           </ThumbnailContainer>
-          <button onClick={sendData}>send</button>
         </MainSection>
       </Wrapper>
+      <CreaterCenterFooter handleUpload={sendData} />
     </>
   );
 }
@@ -250,6 +255,7 @@ const MainSection = styled.section`
   max-width: 986px;
   width: 100%;
   height: 1100px;
+  margin: 120px 0 0 320px;
 `;
 
 const Title = styled.h1`
@@ -461,3 +467,10 @@ const ThumbnailSub = styled.div`
   width: 100%;
   height: 300px;
 `;
+
+const CONTENTOBJ = {
+  "기본 정보": false,
+  "제목 및 커버": true,
+  소개: false,
+  "크리에이터 소개": false,
+};

@@ -29,6 +29,7 @@ const CreaterCenterFooterWrapper = styled.div`
   width: calc(100% - 280px);
   height: 76px;
   border-top: 1px solid rgb(237, 239, 240);
+  background: white;
 
   a {
     text-decoration: none;
