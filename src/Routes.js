@@ -8,6 +8,7 @@ import Login from "./Pages/Login/Login";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 import CreaterCenter from "./Pages/CreaterCenter/CreatorCenter";
 import CreatorsInfo from "./Pages/CreatorsInfo/CreatorsInfo";
+import Introduction from "./Pages/CreaterCenter/Introduction";
 import Nav from "./Components/Nav/Nav";
 import Footer from "./Components/Footer/Footer";
 import BasicInfo from "./Pages/CreaterCenter/BasicInfo";
@@ -25,6 +26,11 @@ class Routes extends React.Component {
             <Route exact path="/productdetail" component={ProductDetail} />
             <Route exact path="/creatercenter" component={CreaterCenter} />
             <Route exact path="/creatorsinfo" component={CreatorsInfo} />
+            <Route
+              exact
+              path="/creatorsintroduction"
+              component={Introduction}
+            />
             <Route exact path="/nav" component={Nav} />
             <Route exact path="/footer" component={Footer} />
             <Route exact path="/basicinfo" component={BasicInfo} />
