@@ -56,7 +56,7 @@ const LINKOBJ = {
 
 const ContentListWrapper = styled.div`
   position: fixed;
-  top: 100px;
+  top: 80px;
   left: 0px;
   width: 280px;
   padding-top: 24px;

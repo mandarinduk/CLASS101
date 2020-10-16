@@ -15,42 +15,45 @@ import {
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
 import S3FileUpload from "react-s3";
+import { api } from "../../Config";
 
 import Headers from "../CreaterCenter/Components/Headers";
 import ContentList from "../CreaterCenter/Components/ContentList";
 import CreaterCenterFooter from "../CreaterCenter/Components/CreaterCenterFooter";
 
 const CreatorsInfo = () => {
-  // 크리에이터 전체 데이터 받아오기1
+  // 크리에이터 전체 데이터 받아오기
   const [creator, setCreator] = useState([]);
   // 크리에이터 데이터 불러온 후 배열에 선언하기
   useEffect(() => {
-    // fetch(`http://10.58.2.168:8002/products/open`, {
-    //   headers: {
-    //     Authorization: localStorage.getItem("Kakao_token"),
-    //     "Content-Type": "application/json;charset=utf-8",
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => setCreator(res.data));
-
-    fetch(`http://localhost:3000/Data/creatorCenterMOCK.json`, {
+    fetch(`${api}/user/creator/intro`, {
       headers: {
         Authorization: localStorage.getItem("Kakao_token"),
-        "Content-Type": "application/json;charset=utf-8",
       },
     })
       .then((res) => res.json())
-      .then((res) => setCreator(res.data));
+      .then((res) => setCreator(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
-    setProfile(creator.profile_image);
-    setNickname(creator.nickname);
-    setContact(creator.phone_number);
-    setSNS(creator.SNS);
-    setInfo(creator.creator_introduction);
-    setTags(creator.hashtag);
+    const {
+      profile_image,
+      nickname,
+      phone_number,
+      SNS,
+      creator_introduction,
+      hashtag,
+    } = creator;
+
+    if (creator) {
+      setProfile(profile_image);
+      setNickname(nickname);
+      setContact(phone_number);
+      setSNS(SNS);
+      setInfo(creator_introduction);
+      setTags(hashtag);
+    }
   }, [creator]);
 
   // 크리에이터 프로필사진 관련
@@ -115,8 +118,12 @@ const CreatorsInfo = () => {
   };
 
   const addChannel = (e) => {
-    const snsid = new Date().getTime();
-    setSNS([...sns, { ...initialSnsObject, snsid }]);
+    const snsCreateDate = new Date().getTime();
+    setSNS(
+      sns
+        ? [...sns, { ...initialSnsObject, snsCreateDate }]
+        : [{ ...initialSnsObject, snsCreateDate }]
+    );
   };
 
   // 크리에이터 자기소개 관련
@@ -140,11 +147,12 @@ const CreatorsInfo = () => {
       hashtag: tags,
     };
 
-    fetch("http://10.58.4.217:8000/user/creator/intro", {
+    console.log(newCreator);
+
+    fetch(`${api}/user/creator/intro`, {
       method: "post",
       headers: {
         Authorization: localStorage.getItem("Kakao_token"),
-        "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(newCreator),
     })
@@ -212,7 +220,7 @@ const CreatorsInfo = () => {
                         onClick={(e) => {
                           setSNS(
                             sns.filter((el) => {
-                              return el.snsid !== channel.snsid;
+                              return el.snsCreateDate !== channel.snsid;
                             })
                           );
                         }}
@@ -274,13 +282,21 @@ const CreatorsInfo = () => {
             </CreatorGuide>
           </WrapperLeft>
         </SmallContainer>
-        <CreaterCenterFooter onClick={postCreator} />
+        <CreaterCenterFooter
+          handleUpload={postCreator}
+          prevPage={PREVPAGE}
+          nextPage={NEXTPAGE}
+        />
       </MiddleContainer>
     </Wrapper>
   );
 };
 
 export default CreatorsInfo;
+
+const PREVPAGE = "/creatorsintroduction";
+
+const NEXTPAGE = "/";
 
 const Wrapper = styled.section``;
 
