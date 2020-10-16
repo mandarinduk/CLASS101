@@ -4,12 +4,13 @@ import { Colors, Badge, Icon } from "@class101/ui";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { api } from "../../../../../../../Config";
 
 const RecommendedClass = () => {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
-    fetch("http://10.58.6.47:8002/products/detail_recommend")
+    fetch(`${api}/products/detail_recommend`)
       .then((res) => res.json())
       .then((res) => {
         setItem(res.data);

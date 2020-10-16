@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Button, ButtonColor, Badge, Icon } from "@class101/ui";
 import CountDown from "./CountDown";
+import { api } from "../../../../../../Config";
 
 const SideBar = () => {
   const [item, setItem] = useState({});
 
   useEffect(() => {
-    fetch("http://10.58.6.47:8002/products/detail")
+    fetch(`${api}/products/detail`)
       .then((res) => res.json())
       .then((res) => {
         setItem(res.data);

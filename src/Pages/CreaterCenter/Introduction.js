@@ -5,6 +5,7 @@ import Headers from "./Components/Headers";
 import ContentList from "./Components/ContentList";
 import CreaterCenterFooter from "./Components/CreaterCenterFooter";
 import axios from "axios";
+import { api } from "../../Config";
 
 export default function Introduction() {
   const [introductionData, setIntroductionData] = useState();
@@ -13,8 +14,7 @@ export default function Introduction() {
   const [introductionDescObj, setIntroductionDescObj] = useState({});
 
   useState(() => {
-    fetch("/Data/introductionMOCK.json", {
-      // fetch("http://10.58.2.168:8002/products/introduce", {
+    fetch(`${api}/products/introduce`, {
       headers: {
         Authorization: localStorage.getItem("Kakao_token"),
       },
@@ -48,10 +48,9 @@ export default function Introduction() {
     );
     const filesSort = files.sort((a, b) => a.id - b.id);
     const uploadedFiles = filesSort.map((el) => el.file);
-
     const formData = new FormData();
-    uploadedFiles.forEach((file, index) => {
-      formData.append("introduction_image", file, `file${index}`);
+    uploadedFiles.forEach((file) => {
+      formData.append("introduction_image", file);
     });
 
     introductionDescs.forEach((text) => {
@@ -60,11 +59,13 @@ export default function Introduction() {
 
     formData.append("status", 3);
 
-    axios.post(`http://10.58.2.168:8002/products/introduce`, formData, {
-      headers: {
-        Authorization: localStorage.getItem("Kakao_token"),
-      },
-    });
+    axios
+      .post(`${api}/products/introduce`, formData, {
+        headers: {
+          Authorization: localStorage.getItem("Kakao_token"),
+        },
+      })
+      .then((res) => res.data.message === "SUCCESS" && alert("🥳저장 성공❗️"));
   };
 
   return (

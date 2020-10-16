@@ -10,13 +10,13 @@ function Headers({ saved }) {
         <HeadersLeftContent>
           <Logo />
           <div>수요조사 시작하기</div>
-          <Progress>{saved?.length * 25}% 완료</Progress>
+          <Progress>{saved?.length * 25 || 0}% 완료</Progress>
         </HeadersLeftContent>
         <Link to="/">
           <Button>나가기</Button>
         </Link>
       </HeadersContent>
-      <ProgressBar value={saved?.length * 25} />
+      <ProgressBar value={saved?.length * 25 || 0} />
     </HeadersWrapper>
   );
 }
