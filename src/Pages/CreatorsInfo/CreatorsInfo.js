@@ -147,8 +147,6 @@ const CreatorsInfo = () => {
       hashtag: tags,
     };
 
-    console.log(newCreator);
-
     fetch(`${api}/user/creator/intro`, {
       method: "post",
       headers: {

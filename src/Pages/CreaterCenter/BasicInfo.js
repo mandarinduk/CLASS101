@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import Headers from "./Components/Headers";
 import ContentList from "./Components/ContentList";
 import CreaterCenterFooter from "./Components/CreaterCenterFooter";
+import { api } from "../../Config";
 
 const BasicInfo = () => {
   const [input, setInput] = useState({
@@ -37,7 +38,7 @@ const BasicInfo = () => {
   };
 
   useEffect(() => {
-    fetch("http://10.58.2.168:8002/products/basic", {
+    fetch(`${api}products/basic`, {
       headers: {
         Authorization: localStorage.getItem("Kakao_token"),
       },
@@ -58,7 +59,7 @@ const BasicInfo = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://10.58.2.168:8002/products/basic", {
+    fetch(`${api}/products/basic`, {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("Kakao_token"),

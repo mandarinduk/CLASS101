@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import { api } from "../../../../Config";
 
 const HeaderPics = () => {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
-    fetch("http://10.58.6.47:8002/products/detail_image")
+    fetch(`${api}/products/detail_image`)
       .then((res) => res.json())
       .then((res) => {
         setItem(res.data.detail_image);
