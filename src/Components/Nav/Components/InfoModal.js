@@ -1,15 +1,25 @@
 import React from "react";
-import { Icon } from "@class101/ui";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { Icon } from "@class101/ui";
 
 const InfoModal = ({ on }) => {
+  const history = useHistory();
+
   return (
     <InfoModalWrapper on={on}>
       <span>
         <Icon.Person />
         마이페이지 {`>`}
       </span>
-      <div>로그아웃</div>
+      <div
+        onClick={() => {
+          localStorage.removeItem("Kakao_token");
+          history.push("/");
+        }}
+      >
+        로그아웃
+      </div>
     </InfoModalWrapper>
   );
 };
@@ -26,6 +36,7 @@ const InfoModalWrapper = styled.div`
   border-radius: 3px;
   box-shadow: rgba(41, 42, 43, 0.2) 0px 0px 10px;
   font-size: 14px;
+  z-index: 999;
 
   span {
     ${({ theme }) => theme.flex("", `center`)}

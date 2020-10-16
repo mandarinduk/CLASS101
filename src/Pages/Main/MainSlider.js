@@ -54,7 +54,7 @@ const Bar = styled.div`
     content: "";
     display: block;
     transform-origin: left;
-    transition: ${({ value }) => (value === 100 ? "all 5s linear" : "none")};
+    transition: ${({ value }) => (value === 100 ? "all 3.5s linear" : "none")};
   }
 `;
 

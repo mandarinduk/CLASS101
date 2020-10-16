@@ -10,7 +10,7 @@ const MainClasses = (props) => {
   const allClassData = useSelector((state) => state.allClasses);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/Data/classesMOCK.json`)
+    fetch(`http://10.58.2.168:8002/products`)
       .then((res) => res.json())
       .then((res) => {
         dispatch(getClasses(res.data));
@@ -39,9 +39,9 @@ const MainClasses = (props) => {
                   name={item.name}
                   heart_count={item.heart_count}
                   like={item.like}
-                  retail_price={item.retail_price.toLocaleString()}
+                  retail_price={item.retail_price}
                   discount_percent={item.discount_percent}
-                  monthly_pay={item.monthly_pay.toLocaleString()}
+                  monthly_pay={item.monthly_pay}
                   monthly_payment={item.monthly_payment}
                 />
               );
@@ -56,7 +56,7 @@ const MainClasses = (props) => {
 export default MainClasses;
 
 const Wrapper = styled.section`
-  max-width: 1176px;
+  width: 1176px;
   margin: 80px auto;
   a {
     text-decoration: none;
