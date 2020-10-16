@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
 
@@ -6,28 +6,14 @@ const MainModal = (props) => {
   const {
     modalCtrl,
     isClicked,
-    pic,
-    title,
-    category,
-    detail_category,
-    level,
-    introduction_image1,
-    introduction_image2,
-    introduction_image3,
-    introduction_text1,
-    introduction_text2,
-    introduction_text3,
-    profile_image,
-    nickname,
-    phone_number,
-    creator_information,
-    sns,
-    hashtag,
+
+    item,
   } = props;
 
-  console.log(level);
-  console.log(profile_image);
-
+  // console.log(level);
+  // console.log(profile_image);
+  // console.log(item.introduction_image1[0]);
+  // console.log(item);
   const settings = {
     dots: true,
     infinite: true,
@@ -36,63 +22,65 @@ const MainModal = (props) => {
     slidesToScroll: 1,
   };
 
+  const splitHashTag = (string) => {
+    const regex = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+    return string.split(",").map((tag) => {
+      return tag.replace(regex, "");
+    });
+  };
+
   return (
     <Wrapper isClicked={isClicked}>
       <Modal>
         <Slider {...settings}>
           <ModalWrapper>
-            <ModalImage alt="1st" src={pic} />
+            <ModalImage alt="1st" src={item.cover_image} />
             <ModalContents>
-              <Badge>{category}</Badge>
-              <Badge>{detail_category}</Badge>
-              <Badge>{level}</Badge>
-              <Badge>{hashtag}</Badge>
-              <ClassTitle>{title}</ClassTitle>
+              <Badge>{item.category}</Badge>
+              <Badge>{item.detail_category}</Badge>
+              <Badge>{item.level}</Badge>
+              {item.hashtag &&
+                splitHashTag(item.hashtag[0]).map((e) => {
+                  return <Badge>{e}</Badge>;
+                })}
+              <ClassTitle>{item.name}</ClassTitle>
             </ModalContents>
           </ModalWrapper>
           <ModalWrapper>
-            <ModalImage alt="1st" src={introduction_image1} />
+            <ModalImage alt="1st" src={item.introduction_image[0]} />
             <ModalContents intro>
               <WhatToLearn>이런걸 배워볼거에요</WhatToLearn>
-              <ClassDesc>{introduction_text1}</ClassDesc>
+              <ClassDesc>{item.introduction_text[0]}</ClassDesc>
             </ModalContents>
           </ModalWrapper>
           <ModalWrapper>
-            <ModalImage alt="1st" src={introduction_image2} />
+            <ModalImage alt="1st" src={item.introduction_image[1]} />
             <ModalContents intro>
               <WhatToLearn>이런걸 배워볼거에요</WhatToLearn>
-              <ClassDesc>{introduction_text2}</ClassDesc>
+              <ClassDesc>{item.introduction_text[1]}</ClassDesc>
             </ModalContents>
           </ModalWrapper>
           <ModalWrapper>
-            <ModalImage alt="1st" src={introduction_image3} />
+            <ModalImage alt="1st" src={item.introduction_image[2]} />
             <ModalContents intro>
               <WhatToLearn>이런걸 배워볼거에요</WhatToLearn>
-              <ClassDesc>{introduction_text3}</ClassDesc>
+              <ClassDesc>{item.introduction_text[2]}</ClassDesc>
             </ModalContents>
           </ModalWrapper>
           <ModalWrapper profile>
             <ProfileContainer>
-              <ProfilePhoto alt="profile" src={profile_image} />
+              <ProfilePhoto alt="profile" src={item.profile_image} />
               <ProfileIntro>
-                안녕하세요 <br /> {nickname}입니다.
+                안녕하세요 <br /> {item.nickname}입니다.
               </ProfileIntro>
             </ProfileContainer>
             <BadgeContainer>
               <Badge social>
                 <BadgeImage alt="yotube" src="/images/youtube.png" />
-                <BadgeText>유튜브</BadgeText>
-              </Badge>
-              <Badge social>
-                <BadgeImage alt="yotube" src="/images/facebook.png" />
-                <BadgeText>페이스북</BadgeText>
-              </Badge>
-              <Badge social>
-                <BadgeImage alt="yotube" src="/images/insta.png" />
-                <BadgeText>인스타</BadgeText>
+                <BadgeText>{item.sns.snsname}</BadgeText>
               </Badge>
             </BadgeContainer>
-            <ProfileDesc>{creator_information}</ProfileDesc>
+            <ProfileDesc>{item.creator_information}</ProfileDesc>
           </ModalWrapper>
         </Slider>
         <CloseBtn onClick={() => modalCtrl()}>

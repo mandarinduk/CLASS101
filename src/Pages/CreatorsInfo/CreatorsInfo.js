@@ -118,11 +118,11 @@ const CreatorsInfo = () => {
   };
 
   const addChannel = (e) => {
-    const snsCreateDate = new Date().getTime();
+    const snsid = new Date().getTime();
     setSNS(
       sns
-        ? [...sns, { ...initialSnsObject, snsCreateDate }]
-        : [{ ...initialSnsObject, snsCreateDate }]
+        ? [...sns, { ...initialSnsObject, snsid }]
+        : [{ ...initialSnsObject, snsid }]
     );
   };
 
@@ -136,6 +136,9 @@ const CreatorsInfo = () => {
   // 크리에이터 관련 Taginput
   const [tags, setTags] = useState([]);
 
+  useEffect(() => {
+    console.log(tags);
+  }, [tags]);
   // 데이터 저장하기 함수
   const postCreator = () => {
     let newCreator = {
@@ -176,7 +179,7 @@ const CreatorsInfo = () => {
                   <img
                     alt="profileUpload"
                     src={
-                      !profile
+                      profile === " "
                         ? "https://i1.wp.com/www.stapaustral.catholic.edu.au/wp-content/uploads/sites/16/2019/05/Person-icon.jpg?ssl=1"
                         : profile
                     }
@@ -218,7 +221,7 @@ const CreatorsInfo = () => {
                         onClick={(e) => {
                           setSNS(
                             sns.filter((el) => {
-                              return el.snsCreateDate !== channel.snsid;
+                              return el.snsid !== channel.snsid;
                             })
                           );
                         }}

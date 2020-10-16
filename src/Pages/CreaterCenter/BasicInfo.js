@@ -38,7 +38,7 @@ const BasicInfo = () => {
   };
 
   useEffect(() => {
-    fetch(`${api}products/basic`, {
+    fetch(`${api}/products/basic`, {
       headers: {
         Authorization: localStorage.getItem("Kakao_token"),
       },
@@ -153,12 +153,15 @@ const BasicInfo = () => {
           </FormContainer>
         </BasicInfoContainer>
       </ContentWrapper>
-      <CreaterCenterFooter handleUpload={handleSubmit} />
+      <CreaterCenterFooter handleUpload={handleSubmit} nextPage={NEXTPAGE} />
     </ContentContainer>
   );
 };
 
 export default BasicInfo;
+
+const NEXTPAGE = "/creatorssubject";
+
 const ContentContainer = styled.div`
   ${({ theme }) => theme.flex("center", "center")}
 `;

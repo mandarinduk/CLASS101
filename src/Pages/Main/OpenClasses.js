@@ -5,13 +5,14 @@ import { getOpenClasses } from "../../modules/OpenClasses";
 import { Section, GridList } from "@class101/ui";
 import MainModal from "./MainModal";
 import OpenCard from "./OpenCard";
+import { api } from "../../Config";
 
 const OpenClasses = (props) => {
   const dispatch = useDispatch();
   const allOpenClassData = useSelector((state) => state.allOpenClasses);
 
   useEffect(() => {
-    fetch(`http://10.58.2.168:8002/products/open`)
+    fetch(`${api}/products/open`)
       .then((res) => res.json())
       .then((res) => {
         dispatch(getOpenClasses(res.data));
@@ -48,7 +49,7 @@ const OpenClasses = (props) => {
               <MainModal
                 modalCtrl={modalCtrl}
                 isClicked={isClicked}
-                {...item}
+                item={{ ...item }}
               />
             </>
           );

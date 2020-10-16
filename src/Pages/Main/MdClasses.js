@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import Slider from "react-slick";
@@ -8,13 +9,14 @@ import { Section } from "@class101/ui";
 import Card from "./Card";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { api } from "../../Config";
 
 const MdClasses = (props) => {
   const dispatch = useDispatch();
   const allMdClassData = useSelector((state) => state.allMdClasses);
 
   useEffect(() => {
-    fetch(`http://10.58.2.168:8002/products/recommend`)
+    fetch(`${api}/products/recommend`)
       .then((res) => res.json())
       .then((res) => {
         dispatch(getMdClasses(res.data));
@@ -34,25 +36,27 @@ const MdClasses = (props) => {
         title="PM 추천 클래스"
         description="여행을 떠나자! PM이 추천하는 베스트 여행 관련 강의들"
       >
-        <Slider {...settings}>
-          {items.map((item) => {
-            return (
-              <Card
-                isMD={`md`}
-                id={item.id}
-                thumbnail={item.thumbnail}
-                category={item.category}
-                name={item.name}
-                heart_count={item.heart_count}
-                like={item.like}
-                retail_price={item.retail_price.toLocaleString()}
-                discount_percent={item.discount_percent}
-                monthly_pay={item.monthly_pay.toLocaleString()}
-                monthly_payment={item.monthly_payment}
-              />
-            );
-          })}
-        </Slider>
+        <Link to="/productdetail">
+          <Slider {...settings}>
+            {items.map((item) => {
+              return (
+                <Card
+                  isMD={`md`}
+                  id={item.id}
+                  thumbnail={item.thumbnail}
+                  category={item.category}
+                  name={item.name}
+                  heart_count={item.heart_count}
+                  like={item.like}
+                  retail_price={item.retail_price.toLocaleString()}
+                  discount_percent={item.discount_percent}
+                  monthly_pay={item.monthly_pay.toLocaleString()}
+                  monthly_payment={item.monthly_payment}
+                />
+              );
+            })}
+          </Slider>
+        </Link>
       </Section>
     </Wrapper>
   );

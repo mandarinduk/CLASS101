@@ -236,12 +236,20 @@ function CreatorsSubject() {
           </ThumbnailContainer>
         </MainSection>
       </Wrapper>
-      <CreaterCenterFooter handleUpload={sendData} />
+      <CreaterCenterFooter
+        handleUpload={sendData}
+        nextPage={NEXTPAGE}
+        prevPage={PREVPAGE}
+      />
     </>
   );
 }
 
 export default CreatorsSubject;
+
+const PREVPAGE = "/basicinfo";
+
+const NEXTPAGE = "/creatorsintroduction";
 
 const Wrapper = styled.div`
   max-width: 1400px;

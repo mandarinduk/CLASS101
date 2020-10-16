@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClasses } from "../../modules/MainClasses";
 import { Section, GridList } from "@class101/ui";
 import Card from "./Card";
+import { api } from "../../Config";
 
 const MainClasses = (props) => {
   const dispatch = useDispatch();
   const allClassData = useSelector((state) => state.allClasses);
 
   useEffect(() => {
-    fetch(`http://10.58.2.168:8002/products`)
+    fetch(`${api}/products`)
       .then((res) => res.json())
       .then((res) => {
         dispatch(getClasses(res.data));

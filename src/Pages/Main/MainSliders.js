@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMdClasses } from "../../modules/MdClasses";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { api } from "../../Config";
 
 const MainSliders = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const MainSliders = (props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    fetch(`http://10.58.2.168:8002/products/recommend`)
+    fetch(`${api}/products/recommend`)
       .then((res) => res.json())
       .then((res) => {
         dispatch(getMdClasses(res.data));
