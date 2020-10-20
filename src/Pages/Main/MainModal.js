@@ -77,7 +77,7 @@ const MainModal = (props) => {
             <BadgeContainer>
               <Badge social>
                 <BadgeImage alt="yotube" src="/images/youtube.png" />
-                <BadgeText>{item.sns.snsname}</BadgeText>
+                <BadgeText>{item.sns[0].account}</BadgeText>
               </Badge>
             </BadgeContainer>
             <ProfileDesc>{item.creator_information}</ProfileDesc>
