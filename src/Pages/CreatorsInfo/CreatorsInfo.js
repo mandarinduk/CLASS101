@@ -59,14 +59,14 @@ const CreatorsInfo = () => {
   // 크리에이터 프로필사진 관련
   // 아마존 s3 설정
   const config = {
-    bucketName: "1nass",
+    bucketName: "kyudeokbae",
     region: "ap-northeast-2",
-    accessKeyId: "AKIAJDES5PVJ3TL75BNQ",
-    secretAccessKey: "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",
+    accessKeyId: "AKIAWXGWHYXK6HEBXVPM",
+    secretAccessKey: "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",
   };
 
   // 프로필 업로드 함수
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState();
   const handleProfile = (e) => {
     const file = e.target.files[0];
     S3FileUpload.uploadFile(file, config)
@@ -158,7 +158,7 @@ const CreatorsInfo = () => {
       body: JSON.stringify(newCreator),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res))
+      .then((res) => res.data.message === "SUCCESS" && alert("🥳저장 성공❗️"))
       .catch((err) => console.log(err));
   };
 
@@ -179,9 +179,9 @@ const CreatorsInfo = () => {
                   <img
                     alt="profileUpload"
                     src={
-                      profile === " "
-                        ? "https://i1.wp.com/www.stapaustral.catholic.edu.au/wp-content/uploads/sites/16/2019/05/Person-icon.jpg?ssl=1"
-                        : profile
+                      profile
+                        ? profile
+                        : "https://i1.wp.com/www.stapaustral.catholic.edu.au/wp-content/uploads/sites/16/2019/05/Person-icon.jpg?ssl=1"
                     }
                   />
                   <Icon.Camera size={28} />

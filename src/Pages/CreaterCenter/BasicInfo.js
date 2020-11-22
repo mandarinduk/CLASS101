@@ -47,12 +47,12 @@ const BasicInfo = () => {
       .then((res) => {
         setData(res.data);
         setInput({
-          categoryValue: res.data.category,
-          detailValue: res.data.detail_category,
+          categoryValue: res.data?.category,
+          detailValue: res.data?.detail_category,
         });
         setSelect({
-          brandValue: res.data.brand,
-          levelValue: res.data.level,
+          brandValue: res.data?.brand,
+          levelValue: res.data?.level,
         });
       });
   }, []);
@@ -65,15 +65,15 @@ const BasicInfo = () => {
         Authorization: localStorage.getItem("Kakao_token"),
       },
       body: JSON.stringify({
-        brand: brandValue,
+        brand: Number(brandValue),
         category: categoryValue,
         detail_category: detailValue,
-        level: levelValue,
+        level: Number(levelValue),
       }),
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        res.data.message === "SUCCESS" && alert("🥳저장 성공❗️");
       });
   };
 

@@ -10,10 +10,10 @@ const RecommendedClass = () => {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
-    fetch(`${api}/products/detail_recommend`)
+    fetch(`${api}/products/detail`)
       .then((res) => res.json())
       .then((res) => {
-        setItem(res.data);
+        setItem(res.data.recommend_product);
       });
   }, []);
 

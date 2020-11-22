@@ -6,7 +6,7 @@ const HeaderPics = () => {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
-    fetch(`${api}/products/detail_image`)
+    fetch(`${api}/products/detail`)
       .then((res) => res.json())
       .then((res) => {
         setItem(res.data.detail_image);

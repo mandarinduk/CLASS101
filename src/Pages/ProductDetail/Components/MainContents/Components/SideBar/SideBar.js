@@ -192,7 +192,7 @@ const DiscountPrice = styled.div`
   color: red;
   font-size: 18px;
   font-weight: 700;
-  margin-left: 120px;
+  /* margin-left: 120px; */
 `;
 
 const GetCoupon = styled.button`

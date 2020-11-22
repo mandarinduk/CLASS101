@@ -1,4 +1,4 @@
-export const api = "http://10.58.7.152:8002";
+export const api = "http://172.20.10.3:8002";
 
 export const kakaoLogin_API =
-  "http://10.58.7.152:8002/user/signin/kakao/callback";
+  "http://172.20.10.3:8002/user/signin/kakao/callback";

@@ -31,7 +31,10 @@ function CreatorsSubject() {
           Authorization: localStorage.getItem("Kakao_token"),
         },
       })
-      .then((res) => setBackData(res.data.data));
+      .then((res) => {
+        console.log(res);
+        setBackData(res.data.data);
+      });
   }, []);
 
   useEffect(() => {
@@ -90,11 +93,13 @@ function CreatorsSubject() {
     formData.append("thumbnail", thumbnailImg);
     formData.append("title", subject);
 
-    await axios.post(`${api}/products/title`, formData, {
-      headers: {
-        Authorization: localStorage.getItem("Kakao_token"),
-      },
-    });
+    await axios
+      .post(`${api}/products/title`, formData, {
+        headers: {
+          Authorization: localStorage.getItem("Kakao_token"),
+        },
+      })
+      .then((res) => res.data.message === "SUCCESS" && alert("🥳저장 성공❗️"));
   };
 
   return (

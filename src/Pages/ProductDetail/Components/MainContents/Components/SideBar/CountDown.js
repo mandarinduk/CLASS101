@@ -71,5 +71,6 @@ const Container = styled.div`
   font-size: 11px;
   color: red;
   margin-left: 10px;
+  margin-right: 100px;
   display: flex;
 `;

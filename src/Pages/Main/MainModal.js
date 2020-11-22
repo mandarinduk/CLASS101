@@ -10,10 +10,6 @@ const MainModal = (props) => {
     item,
   } = props;
 
-  // console.log(level);
-  // console.log(profile_image);
-  // console.log(item.introduction_image1[0]);
-  // console.log(item);
   const settings = {
     dots: true,
     infinite: true,
@@ -75,12 +71,14 @@ const MainModal = (props) => {
               </ProfileIntro>
             </ProfileContainer>
             <BadgeContainer>
-              <Badge social>
-                <BadgeImage alt="yotube" src="/images/youtube.png" />
-                <BadgeText>{item.sns[0].account}</BadgeText>
-              </Badge>
+              <a href="http://www.youtube.com" target="blank">
+                <Badge social>
+                  <BadgeImage alt="yotube" src="/images/youtube.png" />
+                  <BadgeText>{item.sns[0].account}</BadgeText>
+                </Badge>
+              </a>
             </BadgeContainer>
-            <ProfileDesc>{item.creator_information}</ProfileDesc>
+            <ProfileDesc>{item.creator_introduction}</ProfileDesc>
           </ModalWrapper>
         </Slider>
         <CloseBtn onClick={() => modalCtrl()}>

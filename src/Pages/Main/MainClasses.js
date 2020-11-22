@@ -40,9 +40,9 @@ const MainClasses = (props) => {
                   name={item.name}
                   heart_count={item.heart_count}
                   like={item.like}
-                  retail_price={item.retail_price}
+                  retail_price={item.retail_price?.toLocaleString()}
                   discount_percent={item.discount_percent}
-                  monthly_pay={item.monthly_pay}
+                  monthly_pay={item.monthly_pay?.toLocaleString()}
                   monthly_payment={item.monthly_payment}
                 />
               );

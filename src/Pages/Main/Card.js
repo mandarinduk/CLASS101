@@ -122,7 +122,9 @@ const Price = styled.div`
     display: flex;
     * {
       margin-right: 10px;
-    }`;
+    }
+  }
+`;
 
 const DiscountPriceInfo = styled.div`
   display: flex;
