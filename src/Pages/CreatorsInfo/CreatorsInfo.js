@@ -61,8 +61,8 @@ const CreatorsInfo = () => {
   const config = {
     bucketName: "kyudeokbae",
     region: "ap-northeast-2",
-    accessKeyId: "AKIAWXGWHYXK6HEBXVPM",
-    secretAccessKey: "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",
+    accessKeyId: "",
+    secretAccessKey: "",
   };
 
   // 프로필 업로드 함수
