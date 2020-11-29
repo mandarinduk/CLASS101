@@ -5,6 +5,8 @@ Class101(https://class101.net) 프로젝트입니다.
 * 구성 : 
   * Front-end : 배규덕, 권영빈, 김우석, 문상호
   * Back-end  : 이수현, 김성진
+* 결과물 : https://youtu.be/LDQO-ValXAw
+* 후기 : https://velog.io/@mandarinduk/%ED%81%B4%EB%9E%98%EC%8A%A4101-%ED%81%B4%EB%A1%A0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9B%84%EA%B8%B0
 
 # Stack
 * javascript
