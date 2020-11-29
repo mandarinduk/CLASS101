@@ -56,15 +56,6 @@ const CreatorsInfo = () => {
     }
   }, [creator]);
 
-  // 크리에이터 프로필사진 관련
-  // 아마존 s3 설정
-  const config = {
-    bucketName: "kyudeokbae",
-    region: "ap-northeast-2",
-    accessKeyId: "accessKeyId",
-    secretAccessKey: "secretAccessKey",
-  };
-
   // 프로필 업로드 함수
   const [profile, setProfile] = useState();
   const handleProfile = (e) => {
